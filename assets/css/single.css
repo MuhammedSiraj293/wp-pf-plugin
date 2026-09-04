@@ -1,0 +1,847 @@
+/* 
+ * Single Property Page Styling
+ * TCA Real Estate
+ */
+
+.tca-sp-container {
+  max-width: 1280px;
+  margin: 100px auto 0 auto;
+  padding: 40px 20px;
+  color: var(--tca-text-main);
+}
+
+.tca-sp-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.tca-sp-container h1.tca-sp-title {
+  font-size: 50px;
+  font-weight: 500;
+  color: var(--tca-secondary);
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  word-spacing: -2px;
+}
+
+.tca-sp-actions {
+  display: flex;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.tca-sp-container a.tca-sp-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #f1f5f9;
+  color: var(--tca-text-main);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.tca-sp-container a.tca-sp-action-btn:hover {
+  background: #e2e8f0;
+}
+
+/* Layout Grid */
+.tca-sp-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Left Column Containers */
+.tca-sp-main-col {
+  grid-column: 1;
+  min-width: 0;
+}
+
+.tca-sp-sidebar-col {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  height: 100%;
+}
+
+.tca-sp-hero-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.tca-sp-hero-gallery {
+  border-radius: var(--tca-radius);
+  overflow: hidden;
+  height: 600px;
+  display: flex;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  cursor: grab;
+}
+.tca-sp-hero-gallery:active {
+  cursor: grabbing;
+}
+.tca-sp-hero-gallery::-webkit-scrollbar {
+  display: none;
+}
+.tca-sp-hero-gallery img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: center;
+  pointer-events: none; /* Crucial so mouse actions trigger slide instead of image dragging */
+}
+
+/* Hero Controls */
+.tca-sp-hero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+  transition: all 0.2s;
+  z-index: 10;
+}
+.tca-sp-hero-nav:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.05);
+}
+.tca-hero-prev {
+  left: 20px;
+}
+.tca-hero-next {
+  right: 20px;
+}
+
+.tca-sp-gallery-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(40, 40, 40, 0.85);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+  z-index: 10;
+}
+.tca-sp-gallery-badge:hover {
+  background: rgba(40, 40, 40, 1);
+}
+
+.tca-hero-tags {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.tca-hero-tag {
+  background: white;
+  color: var(--tca-text-main);
+  padding: 0px 10px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--tca-border);
+  pointer-events: none; /* Let drag pass through */
+}
+
+.tca-sp-tabs-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+  overflow-x: auto; /* Scroll here, not on the inner element */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.tca-sp-tabs-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+.tca-sp-tabs {
+  display: flex;
+  overflow-x: visible; /* Let the wrapper handle scrolling */
+  background: white;
+  border: 1px solid var(--tca-border);
+  border-radius: 100px;
+  padding: 5px;
+  width: max-content;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  scrollbar-width: none;
+}
+.tca-sp-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tca-sp-container a.tca-sp-tab {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--tca-text-main);
+  text-decoration: none;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.tca-sp-container a.tca-sp-tab.active,
+.tca-sp-container a.tca-sp-tab:hover {
+  background: #f1f5f9;
+}
+
+/* Sections */
+.tca-sp-section {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--tca-border);
+}
+
+.tca-sp-container h2.tca-sp-section-title {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--tca-secondary);
+  margin-bottom: 25px;
+  letter-spacing: -1px;
+  word-spacing: -2px;
+}
+
+.tca-sp-text {
+  font-size: 16px;
+  color: var(--tca-text-main);
+  line-height: 1.6;
+}
+
+/* Read More Module */
+.tca-overview-content {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--tca-text-main);
+  display: -webkit-box;
+  -webkit-line-clamp: 9;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.tca-overview-content.tca-expanded {
+  -webkit-line-clamp: unset;
+}
+.tca-read-more-btn {
+  display: inline-block;
+  margin-top: 15px;
+  background: none;
+  border: none;
+  color: #002f44;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* Amenities Network */
+.tca-sp-amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tca-sp-container h3.tca-sp-group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 25px;
+  color: var(--tca-secondary);
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.tca-sp-amenity-item {
+  font-size: 15px;
+  color: var(--tca-text-main);
+  margin-bottom: 15px;
+  display: block;
+}
+
+.tca-sp-container a.tca-sp-amenity-more {
+  display: inline-flex;
+  padding: 8px 16px;
+  background: #f0f9ff;
+  color: #444;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+/* Project Details Box */
+.tca-sp-details-box {
+  border: 1px solid var(--tca-border);
+  border-radius: var(--tca-radius);
+  padding: 30px;
+}
+.tca-sp-details-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--tca-border);
+  font-size: 15px;
+}
+.tca-sp-details-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.tca-sp-details-label {
+  color: var(--tca-text-light);
+}
+.tca-sp-details-value {
+  font-weight: 500;
+  text-transform: capitalize;
+  color: var(--tca-text-main);
+  text-align: right;
+}
+
+/* Mortgage Calculator */
+.tca-sp-mortgage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.tca-calc-slider-group {
+  margin-bottom: 25px;
+}
+
+.tca-calc-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tca-calc-label {
+  font-size: 13px;
+  color: var(--tca-text-light);
+}
+
+.tca-calc-val {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tca-text-main);
+}
+
+.tca-calc-range {
+  width: 100%;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  outline: none;
+}
+.tca-calc-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #0ea5e9;
+  cursor: pointer;
+}
+
+.tca-calc-limits {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--tca-text-light);
+  margin-top: 8px;
+}
+
+.tca-sp-mortgage-result {
+  border: 1px solid var(--tca-border);
+  border-radius: var(--tca-radius);
+  padding: 30px;
+}
+
+.tca-mr-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--tca-border);
+  font-size: 15px;
+}
+
+.tca-mr-label {
+  color: var(--tca-text-light);
+}
+.tca-mr-val {
+  font-weight: 600;
+}
+
+.tca-mr-monthly {
+  margin-top: 30px;
+}
+.tca-mr-monthly span {
+  display: block;
+  font-size: 15px;
+  color: #0a3c61;
+  margin-bottom: 10px;
+}
+.tca-mr-monthly strong {
+  font-size: 22px;
+  color: #0a3c61;
+  display: block;
+  line-height: 1;
+}
+
+.tca-sp-container a.tca-btn-blue {
+  background: var(--tca-primary);
+  color: white !important;
+  padding: 8px 24px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 15px;
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: var(--tca-transition);
+}
+.tca-sp-container a.tca-btn-blue:hover {
+  background: var(--tca-secondary);
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(10, 60, 97, 0.2);
+}
+
+/* Right Sticky Sidebar */
+.tca-sp-sidebar {
+  position: sticky;
+  top: 40px;
+}
+
+.tca-sp-widget {
+  border: 1px solid var(--tca-border);
+  border-radius: var(--tca-radius);
+  padding: 25px;
+  margin-bottom: 25px;
+  background: white;
+}
+
+.tca-sp-widget-price {
+  font-size: 16px;
+  color: var(--tca-primary);
+  margin-bottom: 5px;
+}
+
+.tca-sp-container h2.tca-sp-price-title {
+  font-size: 35px;
+  font-weight: 500;
+  color: var(--tca-secondary);
+  margin: 0 0 25px 0;
+  line-height: 1;
+}
+
+.tca-sp-w-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--tca-border);
+  font-size: 15px;
+}
+.tca-sp-w-row:last-of-type {
+  border-bottom: none;
+  padding-bottom: 20px;
+}
+
+.tca-sp-agent-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.tca-sp-container .tca-sp-agent-actions a,
+.tca-sp-container .tca-sp-agent-actions a:hover,
+.tca-sp-container .tca-sp-agent-actions a:active {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff !important;
+  text-decoration: none;
+  transition: var(--tca-transition);
+}
+.tca-sp-container .tca-sp-btn-call {
+  background: var(--tca-secondary, #0a3c61);
+}
+.tca-sp-container .tca-sp-btn-call:hover {
+  background: rgba(10, 60, 97, 0.85);
+  box-shadow: 0 5px 15px rgba(10, 60, 97, 0.2);
+}
+
+.tca-sp-container .tca-sp-btn-wa {
+  background: #25d366;
+}
+.tca-sp-container .tca-sp-btn-wa:hover {
+  background: rgba(37, 211, 102, 0.85);
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.tca-sp-btn-enquire {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px;
+  background: var(--tca-primary);
+  color: #fff !important;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--tca-transition);
+  box-shadow: 0 4px 6px rgba(192, 162, 76, 0.2);
+}
+.tca-sp-btn-enquire:hover {
+  background: var(--tca-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(10, 60, 97, 0.2);
+}
+.tca-sp-btn-enquire svg {
+  color: #fff;
+}
+
+/* Related section */
+.tca-sp-related-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.tca-sp-related-header h2 {
+  margin: 0;
+}
+.tca-sp-related-nav span {
+  display: inline-flex;
+  padding: 8px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* Add custom layout flex to use old cards inside single */
+.tca-sp-carousel {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 20px;
+  scrollbar-width: none;
+}
+.tca-sp-carousel::-webkit-scrollbar {
+  display: none;
+}
+.tca-sp-carousel .tca-card-grid {
+  flex: 0 0 calc(33.333% - 17px);
+  scroll-snap-align: start;
+}
+
+/* Lightbox Gallery overlay */
+.tca-sp-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(40, 40, 40, 0.95);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.tca-sp-lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tca-lb-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  color: white;
+}
+.tca-lb-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.tca-lb-close {
+  background: #444;
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.tca-lb-close:hover {
+  background: #666;
+}
+
+.tca-lb-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 0; /* Important for flex child image constraint */
+}
+.tca-lb-main img {
+  max-width: 90vw;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.tca-lb-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 30px 40px 30px;
+}
+
+.tca-lb-nav {
+  background: #444;
+  border: none;
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.tca-lb-nav:hover {
+  background: #666;
+}
+
+.tca-lb-thumbs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  max-width: 600px;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+.tca-lb-thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.tca-lb-thumb {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all 0.2s;
+  scroll-snap-align: center;
+  border: 2px solid transparent;
+}
+.tca-lb-thumb:hover {
+  opacity: 0.8;
+}
+.tca-lb-thumb.active {
+  opacity: 1;
+  border-color: white;
+}
+
+@media (max-width: 1024px) {
+  .tca-sp-layout {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 30px;
+  }
+  .tca-sp-sidebar-col,
+  .tca-sp-main-col {
+    width: 100%;
+  }
+  .tca-sp-hero-gallery {
+    height: 400px;
+  }
+  .tca-sp-sidebar {
+    position: static;
+  }
+  .tca-sp-amenities-grid,
+  .tca-sp-mortgage {
+    grid-template-columns: 1fr;
+  }
+  .tca-sp-carousel .tca-card-grid {
+    flex: 0 0 100%;
+  }
+  .tca-sp-title-area h1 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* ── General Container ── */
+  .tca-sp-container {
+    margin-top: 0;
+    padding: 15px 15px 100px; /* bottom padding for sticky bar */
+  }
+
+  /* ── Header ── */
+  .tca-sp-title-area h1.tca-sp-title {
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    word-spacing: 0;
+    line-height: 1.25;
+  }
+  .tca-sp-header-row {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  .tca-sp-actions {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .tca-sp-container a.tca-sp-action-btn {
+    font-size: 13px;
+    padding: 7px 12px;
+  }
+
+  /* ── Hero Gallery ── */
+  .tca-sp-hero-gallery {
+    height: 320px;
+    border-radius: 10px;
+  }
+  /* Hide click arrows — touch/swipe replaces them on mobile */
+  .tca-sp-hero-nav {
+    display: none;
+  }
+
+  /* ── Tab Bar — make it scroll horizontally ── */
+  .tca-sp-tabs-wrapper {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -15px;
+    padding: 0 15px;
+  }
+  .tca-sp-tabs-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+  .tca-sp-tabs {
+    white-space: nowrap;
+    display: flex;
+    gap: 5px;
+    padding-bottom: 5px;
+  }
+  .tca-sp-tab {
+    flex-shrink: 0;
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  /* ── Layout — single column stack ── */
+  .tca-sp-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .tca-sp-sidebar-col {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  /* ── Key Specs / Whatsapp row ── */
+  .tca-sp-w-row {
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+  .tca-sp-w-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .tca-sp-price-title {
+    font-size: 28px !important;
+  }
+
+  /* ── Details table ── */
+  .tca-sp-details-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 15px;
+  }
+
+  /* ── Amenities ── */
+  .tca-sp-amenities-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tca-sp-amenity-item {
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  /* ── Mortgage Calculator ── */
+  .tca-sp-mortgage {
+    flex-direction: column;
+  }
+
+  /* ── Sticky Contact Bar ── */
+  .tca-sp-agent-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 !important;
+    padding: 12px 15px;
+    background: white;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+  .tca-sp-container .tca-sp-agent-actions a {
+    padding: 6px;
+    font-size: 14px;
+    flex: 1;
+    white-space: nowrap;
+    text-align: center;
+  }
+}

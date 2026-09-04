@@ -1,0 +1,1814 @@
+/* 
+ * Premium Styling for TCA Real Estate Unit Cards
+ * Uses responsive CSS grid and flexbox.
+ */
+
+:root {
+  --tca-primary: #c0a24c;
+  --tca-secondary: #0a3c61;
+  --tca-text-main: #555555;
+  --tca-accent: #0a3c61;
+  --tca-white: #ffffff;
+  --tca-bg-light: #f7f7f7;
+  --tca-border: #e4e4e4;
+  --tca-text-light: #717580;
+  --tca-warning: #ffa800;
+  --tca-orange: #fd961e;
+  --tca-surface: #ffffff;
+  --tca-radius: 12px;
+  --tca-transition: all 0.3s ease;
+}
+
+/* Base Grids */
+.tca-layout-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* Portrait Card */
+.tca-card-grid {
+  background: var(--tca-surface);
+  border-radius: var(--tca-radius);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.tca-card-grid:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+/* Featured Badge on card */
+.tca-cg-featured-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tca-cg-badge-verified {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Status Badge (Ready / Off-plan) */
+.tca-cg-status-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.tca-cg-image-box {
+  position: relative;
+  height: 250px;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+.tca-gallery-slider {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: 100%;
+  height: 100%;
+  scrollbar-width: none;
+}
+.tca-gallery-slider::-webkit-scrollbar {
+  display: none;
+}
+.tca-gallery-slide {
+  flex: 0 0 100%;
+  height: 100%;
+}
+.tca-gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Gallery Controls */
+.tca-cg-carousel-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tca-cg-image-box:hover .tca-cg-carousel-controls,
+.tca-cl-image-box:hover .tca-cg-carousel-controls {
+  opacity: 1;
+}
+.tca-cg-carousel-controls span {
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  color: white;
+  transition: background 0.2s;
+}
+.tca-cg-carousel-controls span:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.tca-cg-carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+.tca-cg-carousel-dots .dot {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.tca-cg-carousel-dots .dot.active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+.tca-cg-overlay-top {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+}
+/* Verified Badge removed duplicate here, already defined above */
+
+.tca-cg-content {
+  padding: 15px;
+  padding-top: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tca-cg-agent-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+.tca-cg-agent-avatar {
+  margin-top: -30px;
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border-radius: 50%;
+  padding: 3px;
+  display: inline-block;
+}
+.tca-cg-agent-avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tca-cg-agent-badge {
+  position: absolute;
+  bottom: 5px;
+  right: -2px;
+  background: #1e1b4b;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+}
+
+.tca-cg-agent-info {
+  flex-grow: 1;
+  margin-left: 10px;
+  line-height: 1.2;
+}
+.tca-cg-superagent {
+  color: #1e1b4b;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.tca-cg-agent-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tca-primary);
+}
+
+.tca-cg-pricing h2.tca-cg-price-small {
+  font-size: 30px;
+  color: var(--tca-secondary);
+  font-weight: 500;
+  margin: 5px 0 10px 0;
+  line-height: 1;
+}
+.tca-cg-title a,
+.tca-cl-title a {
+  font-size: 16px;
+  color: var(--tca-text-main);
+  text-decoration: none;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 44px;
+  line-height: 22px;
+  margin-bottom: 12px;
+}
+
+.tca-cg-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--tca-text-light);
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.tca-cg-spec {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.tca-sep {
+  color: #cbd5e1;
+}
+.tca-cg-location {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.tca-cg-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+.tca-cg-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tca-cg-btn svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+.tca-cg-btn-call {
+  background: #ffffff !important;
+  border: 1.5px solid var(--tca-secondary) !important;
+  color: var(--tca-secondary) !important;
+  box-sizing: border-box;
+}
+.tca-cg-btn-call:hover {
+  background: var(--tca-secondary) !important;
+  color: #ffffff !important;
+}
+.tca-cg-btn-call svg {
+  color: var(--tca-secondary) !important;
+  transition: color 0.3s ease;
+}
+.tca-cg-btn-call:hover svg {
+  color: #ffffff !important;
+}
+.tca-cg-btn-wa {
+  background: #25d366;
+  color: #fff !important;
+}
+.tca-cg-btn-enquire {
+  background: #ffffff !important;
+  border: 1.5px solid var(--tca-primary) !important;
+  color: var(--tca-primary) !important;
+  box-sizing: border-box;
+}
+.tca-cg-btn-enquire:hover {
+  background: var(--tca-primary) !important;
+  color: #ffffff !important;
+}
+.tca-cg-btn-enquire svg {
+  color: var(--tca-primary) !important;
+  transition: color 0.3s ease;
+}
+.tca-cg-btn-enquire:hover svg {
+  color: #ffffff !important;
+}
+
+/* Landscape Card */
+.tca-card-landscape {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 25px;
+  transition: box-shadow 0.3s ease;
+}
+.tca-card-landscape:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+.tca-cl-image-box {
+  width: 440px;
+  height: 350px;
+  flex-shrink: 0;
+  position: relative; /* Keeps badges on the image */
+  background: #f1f5f9;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.tca-cl-image-box .tca-gallery-slider {
+  height: 100%;
+}
+.tca-cl-image-box .tca-gallery-slide {
+  height: 100%;
+}
+.tca-cl-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.tca-cl-content {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .tca-card-landscape {
+    flex-direction: column;
+  }
+  .tca-cl-image-box {
+    width: 100%;
+    height: 200px !important;
+    min-height: auto !important;
+  }
+}
+
+/* ========================================================================= */
+/* ADVANCED SEARCH COMPONENT */
+/* ========================================================================= */
+
+.tca-advanced-search {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(220, 220, 220, 0.9);
+  border-radius: 6px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  max-width: 1200px;
+  margin: 0 auto 30px auto;
+  position: relative;
+  z-index: 1000;
+}
+
+.tca-search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tca-search-primary-row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.tca-search-primary-row > .tca-search-select {
+  flex: 1 1 140px;
+  min-width: 0;
+}
+.tca-search-primary-row > .tca-search-input-wrapper {
+  flex: 3 1 300px;
+  min-width: 0;
+}
+
+.tca-search-select,
+.tca-search-input {
+  height: 46px;
+  padding: 0 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.tca-search-input-wrapper {
+  position: relative;
+}
+.tca-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 14px;
+  color: var(--tca-primary);
+  z-index: 2;
+}
+.tca-search-input {
+  width: 100%;
+  padding-left: 40px;
+}
+
+.tca-search-btn {
+  height: 46px;
+  background: var(--tca-secondary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0 24px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.tca-filter-toggle-btn {
+  display: none;
+  height: 46px;
+  background: var(--tca-primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-weight: 600;
+  cursor: pointer;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.tca-search-secondary-desktop {
+  display: flex;
+  gap: 10px;
+}
+.tca-search-secondary-desktop .tca-search-select {
+  flex: 1;
+}
+
+@media (max-width: 1024px) {
+  .tca-search-secondary-desktop {
+    display: none;
+  }
+  .tca-filter-toggle-btn {
+    display: flex;
+  }
+}
+
+@media (max-width: 600px) {
+  .tca-search-primary-row {
+    flex-wrap: wrap;
+  }
+  .tca-search-primary-row > .tca-search-select {
+    flex: 1 1 calc(50% - 5px);
+  }
+  .tca-search-primary-row > .tca-search-input-wrapper {
+    flex: 1 1 100%;
+    order: 3;
+  }
+  .tca-search-btn {
+    flex: 1 1 calc(70% - 5px);
+    order: 4;
+  }
+  .tca-filter-toggle-btn {
+    flex: 1 1 calc(30% - 5px);
+    order: 5;
+  }
+}
+
+/* Mobile Search Sheets */
+.tca-filter-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+.tca-filter-overlay.is-visible {
+  display: block;
+}
+.tca-filter-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  z-index: 9999;
+  max-height: 85vh;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+.tca-filter-sheet.is-open {
+  transform: translateY(0);
+}
+.tca-filter-sheet-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tca-secondary);
+}
+.tca-filter-sheet-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+.tca-filter-sheet-footer {
+  padding: 15px 20px 25px;
+  border-top: 1px solid #eee;
+}
+.tca-filter-apply-btn {
+  width: 100%;
+  height: 50px;
+  background: var(--tca-secondary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.tca-filter-close {
+  background: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tca-filter-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 8px;
+  display: block;
+  margin-top: 15px;
+}
+
+/* Pagination */
+.tca-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px 0;
+}
+.tca-page-link {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #555;
+  border: 1px solid #eee;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.tca-page-link.active {
+  background: var(--tca-secondary);
+  color: #fff;
+  border-color: var(--tca-secondary);
+}
+.tca-pagination-dots {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10px;
+  color: #999;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* ========================================================================= */
+/* PROJECT SPECIFIC UNITS SECTION (PAGED GRID) */
+/* ========================================================================= */
+.tca-project-units-wrapper {
+  margin: 40px 0;
+}
+.tca-project-units-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 0 15px;
+}
+.tca-project-units-title {
+  font-size: 30px !important;
+  font-weight: 500 !important;
+  color: var(--tca-secondary) !important;
+  margin: 0 !important;
+  text-transform: capitalize !important;
+}
+.tca-project-nav {
+  display: flex;
+  gap: 10px;
+}
+.tca-nav-btn {
+  width: 38px;
+  height: 38px;
+  background: #f1f5f9;
+  color: var(--tca-secondary);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.tca-nav-btn:hover {
+  background: var(--tca-primary);
+  color: white;
+}
+
+.tca-project-paged-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 10px 15px;
+}
+.tca-project-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .tca-project-paged-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .tca-project-paged-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tca-project-item {
+  animation: fadeIn 0.4s ease forwards;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Response Ad Visibility Utilities */
+.tca-mobile-ad {
+  display: none !important;
+}
+.tca-desktop-ad {
+  display: block !important;
+}
+
+@media (max-width: 768px) {
+  .tca-mobile-ad {
+    display: block !important;
+  }
+  .tca-desktop-ad {
+    display: none !important;
+  }
+}
+
+/* Ad Widget Styles */
+.tca-ad-widget {
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  background: #0a3c61;
+  position: relative;
+  isolation: isolate;
+}
+.tca-ad-track {
+  display: flex;
+  width: 100%;
+}
+.tca-ad-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  display: block;
+  position: relative;
+  padding-bottom: 100%;
+  background: #0a3c61;
+}
+.tca-ad-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.tca-ad-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 15px 15px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+.tca-ad-caption-title {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2px;
+}
+.tca-ad-caption-sub {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  display: block;
+}
+.tca-ad-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: #0a3c61;
+}
+.tca-ad-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.tca-ad-dot.active {
+  background: #fff;
+}
+.tca-ad-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tca-ad-prev {
+  left: 12px;
+}
+.tca-ad-next {
+  right: 12px;
+}
+
+/* ==========================================
+   AUTOCOMPLETE DROPDOWN STYLES
+   ========================================== */
+.tca-autocomplete-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--tca-white);
+  border: 1px solid var(--tca-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: inherit;
+}
+.tca-autocomplete-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tca-autocomplete-item {
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid var(--tca-bg-light);
+  transition: var(--tca-transition);
+}
+.tca-autocomplete-item:last-child {
+  border-bottom: none;
+}
+.tca-autocomplete-item:hover {
+  background: var(--tca-bg-light);
+}
+.tca-ac-label {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  color: var(--tca-text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 12px;
+}
+.tca-ac-label strong {
+  color: var(--tca-secondary);
+  font-weight: 600;
+}
+.tca-ac-type {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--tca-text-light);
+  background: var(--tca-bg-light);
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Landscape Footer alignment */
+.tca-cl-footer {
+  margin-top: auto;
+  width: 100%;
+}
+.tca-card-landscape .tca-cg-actions {
+  width: 100%;
+}
+
+/* Developer Logos */
+.tca-cg-developer-logo {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid rgba(228, 228, 228, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+.tca-cg-developer-logo img {
+  max-height: 45px;
+  max-width: 70px;
+  object-fit: contain;
+  display: block;
+}
+
+.tca-cl-developer-logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid rgba(228, 228, 228, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+.tca-cl-developer-logo img {
+  max-height: 45px;
+  max-width: 90px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Custom Dropdown Filters (Beds & Baths) */
+.tca-dropdown-filter {
+  position: relative;
+  display: inline-block;
+  flex: 1;
+}
+
+.tca-dropdown-trigger {
+  width: 100%;
+  height: 46px;
+  padding: 0 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 14px;
+  color: var(--tca-secondary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.tca-dropdown-trigger:hover {
+  border-color: #cbd5e1;
+}
+
+.tca-trigger-arrow {
+  color: var(--tca-secondary);
+  transition: transform 0.2s ease;
+}
+
+.tca-dropdown-filter.is-open .tca-trigger-arrow {
+  transform: rotate(180deg);
+}
+
+.tca-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  min-width: 320px;
+  box-sizing: border-box;
+  display: none;
+}
+
+/* Align panel to right if it would overflow */
+.tca-dropdown-filter:last-of-type .tca-dropdown-panel {
+  left: auto;
+  right: 0;
+}
+
+.tca-panel-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tca-secondary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tca-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tca-filter-btn {
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: var(--tca-text-main);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1 1 calc(25% - 8px);
+  text-align: center;
+  min-width: 55px;
+  box-sizing: border-box;
+}
+
+.tca-filter-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.tca-filter-btn.active {
+  background: rgba(192, 162, 76, 0.08) !important;
+  border-color: var(--tca-primary) !important;
+  color: var(--tca-primary) !important;
+  font-weight: 600;
+}
+
+/* Mobile inline filters */
+.tca-inline-filter {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.tca-inline-filter .tca-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tca-inline-filter .tca-filter-btn {
+  flex: 1 1 calc(20% - 6px);
+  padding: 10px 4px;
+  font-size: 12px;
+}
+
+/* ==========================================
+   ABOUT THE DEVELOPER SHORTCODE STYLES
+   ========================================== */
+.tca-about-dev-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px 40px;
+  margin: 30px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f4f8;
+  gap: 40px;
+  box-sizing: border-box;
+}
+
+.tca-about-dev-content {
+  flex: 1 1 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tca-about-dev-title {
+  font-size: 30px !important;
+  font-weight: 500 !important;
+  color: #0b1f3a !important;
+  margin: 0 0 16px 0 !important;
+  text-transform: capitalize !important;
+  letter-spacing: 0.5px !important;
+  font-family: inherit !important;
+}
+
+.tca-about-dev-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4a5568;
+  margin-bottom: 24px;
+}
+
+.tca-about-dev-desc p {
+  margin: 0 0 12px 0;
+}
+
+.tca-about-dev-desc p:last-child {
+  margin-bottom: 0;
+}
+
+.tca-about-dev-btn-wrap {
+  margin-top: 8px;
+}
+
+.tca-about-dev-btn {
+  display: inline-block;
+  background: #0b1f3a !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  padding: 8px 28px !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(11, 31, 58, 0.25) !important;
+}
+
+.tca-about-dev-btn:hover {
+  background: #071527;
+  box-shadow: 0 6px 16px rgba(11, 31, 58, 0.35);
+  transform: translateY(-1px);
+}
+
+.tca-about-dev-logo-wrap {
+  flex: 0 0 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #ffffff;
+}
+
+.tca-about-dev-logo {
+  max-width: 100%;
+  max-height: 140px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .tca-project-units-title {
+    font-size: 24px !important;
+  }
+
+  .tca-about-dev-box {
+    flex-direction: column-reverse;
+    padding: 24px 20px;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .tca-about-dev-content {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .tca-about-dev-title {
+    font-size: 24px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .tca-about-dev-logo-wrap {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  .tca-about-dev-btn-wrap {
+    width: 100%;
+  }
+
+  .tca-about-dev-btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* ==========================================
+   MORTGAGE CALCULATOR & SUMMARY STYLES
+   ========================================== */
+
+/* Main Calculator Box (Seamless - No Card Wrapper) */
+.tca-mortgage-calc-box {
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+  margin: 30px 0;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.tca-mc-header {
+  margin-bottom: 30px;
+}
+
+.tca-mc-title {
+  font-size: 32px !important;
+  font-weight: 300 !important;
+  line-height: 1.2 !important;
+  color: #0b1f3a !important;
+  margin: 0 0 8px 0 !important;
+  text-transform: capitalize !important;
+  letter-spacing: -0.5px !important;
+}
+
+.tca-mc-subtitle {
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  color: #64748b !important;
+  margin: 0 !important;
+}
+
+.tca-mc-grid {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.tca-mc-inputs-col {
+  flex: 1 1 58%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.tca-mc-slider-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tca-mc-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tca-mc-field-label {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #64748b !important;
+}
+
+.tca-mc-field-val {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  color: #0f172a !important;
+}
+
+/* Custom Range Slider - Ultra Sleek Slim 5px Track */
+.tca-mc-slider {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 100% !important;
+  height: 5px !important;
+  border-radius: 10px !important;
+  background: #eaeff5 !important;
+  outline: none !important;
+  cursor: pointer !important;
+  margin: 8px 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.tca-mc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  background: #0066ff !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 102, 255, 0.4) !important;
+  cursor: pointer !important;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease !important;
+}
+
+.tca-mc-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2) !important;
+  box-shadow: 0 3px 10px rgba(0, 102, 255, 0.6) !important;
+}
+
+.tca-mc-slider::-moz-range-thumb {
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  background: #0066ff !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 102, 255, 0.4) !important;
+  cursor: pointer !important;
+}
+
+.tca-mc-slider::-moz-range-track {
+  height: 5px !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.tca-mc-minmax-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* Right Side Card Output */
+.tca-mc-results-col {
+  flex: 1 1 42%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
+
+.tca-mc-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tca-mc-card-label {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.tca-mc-card-val {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #0f172a !important;
+}
+
+.tca-mc-card-divider {
+  height: 1px;
+  background: #f1f5f9;
+  width: 100%;
+}
+
+.tca-mc-card-monthly-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tca-mc-monthly-label {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #0b1f3a !important;
+}
+
+.tca-mc-monthly-val {
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  color: #0b1f3a !important;
+}
+
+.tca-mc-action-wrap {
+  margin-top: 10px;
+}
+
+.tca-mc-apply-btn {
+  display: inline-block;
+  background: #c0a24c !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 12px 28px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(192, 162, 76, 0.25) !important;
+  text-align: center;
+}
+
+.tca-mc-apply-btn:hover {
+  background: #ad8f3b !important;
+  transform: translateY(-1px);
+}
+
+/* Sleek Brand Summary Card (Competitor Layout, TCA Navy Brand Style) */
+.tca-mortgage-summary-card {
+  background: #f4f7fa !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  padding: 28px 24px !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  font-family: inherit !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+
+.tca-ms-banner {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 2px 6px rgba(11, 31, 58, 0.04) !important;
+}
+
+.tca-ms-banner-icon {
+  color: #0b1f3a !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.tca-ms-banner-text {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #0b1f3a !important;
+}
+
+.tca-ms-rows {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+.tca-ms-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding-bottom: 14px !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+ 
+.tca-ms-row:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.tca-ms-label {
+  font-size: 14px !important;
+  color: #64748b !important;
+  font-weight: 400 !important;
+}
+
+.tca-ms-value {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #0b1f3a !important;
+}
+
+/* Fix Elementor Popup Form Input Focus & Typing */
+.elementor-popup-modal .elementor-field-group input,
+.elementor-popup-modal .elementor-field-group textarea,
+.elementor-popup-modal .elementor-field-group select,
+.elementor-popup-modal form input {
+  pointer-events: auto !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .tca-mortgage-calc-box {
+    padding: 0 !important;
+    margin: 20px 0 !important;
+  }
+
+  .tca-mc-title {
+    font-size: 24px !important;
+  }
+
+  .tca-mc-subtitle {
+    font-size: 14px !important;
+  }
+
+  .tca-mc-grid {
+    flex-direction: column !important;
+    gap: 32px !important;
+    width: 100% !important;
+  }
+
+  .tca-mc-inputs-col,
+  .tca-mc-results-col {
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .tca-mc-results-col {
+    padding: 24px 20px !important;
+  }
+
+  .tca-mc-label-row {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    align-items: baseline !important;
+  }
+
+  .tca-mc-field-label {
+    font-size: 13px !important;
+    flex: 1 1 auto !important;
+  }
+
+  .tca-mc-field-val {
+    font-size: 16px !important;
+    margin-left: auto !important;
+    white-space: nowrap !important;
+  }
+
+  .tca-mc-card-row {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  .tca-mc-card-val {
+    font-size: 15px !important;
+    margin-left: auto !important;
+  }
+
+  .tca-mc-monthly-val {
+    font-size: 22px !important;
+  }
+
+  .tca-mc-apply-btn {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Card Mobile Optimizations for Both cards */
+@media (max-width: 767px) {
+  /* Prevent price splitting on mobile for both cards */
+  .tca-cg-pricing h2.tca-cg-price-small,
+  .tca-cl-price {
+    font-size: 22px !important;
+    white-space: nowrap !important;
+  }
+  
+  /* Shrink specs row and icons on mobile to prevent wrapping */
+  .tca-cg-specs {
+    gap: 6px !important;
+    font-size: 11px !important;
+    margin-bottom: 8px !important;
+    padding-bottom: 8px !important;
+  }
+  .tca-cg-specs svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  
+  /* Hide price per sqft on mobile landscape */
+  .tca-cl-price-sqft,
+  .tca-cl-price-sqft-sep {
+    display: none !important;
+  }
+  
+  /* Reset landscape title min-height and padding on mobile */
+  .tca-card-landscape .tca-cl-title a {
+    min-height: auto !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 8px !important;
+  }
+  .tca-card-landscape .tca-cl-content {
+    padding: 15px !important;
+  }
+  .tca-card-landscape .tca-cg-location {
+    font-size: 12px !important;
+    margin-bottom: 12px !important;
+  }
+}
+
+/* Offer Modal Dialog */
+.tca-modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+}
+.tca-modal-content {
+  background-color: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: tcaModalFade 0.3s ease;
+  overflow: hidden;
+}
+@keyframes tcaModalFade {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.tca-modal-header {
+  padding: 16px 20px;
+  background: var(--tca-secondary);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tca-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+.tca-modal-close {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.tca-modal-body {
+  padding: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.tca-form-group {
+  margin-bottom: 16px;
+}
+.tca-form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+}
+.tca-form-control {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.tca-form-control:focus {
+  outline: none;
+  border-color: var(--tca-secondary);
+}
+.tca-table-builder {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+.tca-table-builder th {
+  text-align: left;
+  font-size: 12px;
+  color: #4b5563;
+  padding: 6px;
+  border-bottom: 2px solid #e5e7eb;
+}
+.tca-table-builder td {
+  padding: 6px 4px;
+}
+.tca-btn-add-row {
+  background: #f3f4f6;
+  border: 1px dashed #d1d5db;
+  color: #4b5563;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+  display: block;
+}
+.tca-btn-add-row:hover {
+  background: #e5e7eb;
+}
+.tca-btn-remove-row {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 16px;
+  cursor: pointer;
+}
+.tca-modal-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.tca-btn-secondary {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tca-btn-primary {
+  background: var(--tca-secondary);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tca-btn-primary:hover {
+  background: #082d49;
+}
+
+.tca-header-input {
+  border: 1px transparent dashed !important;
+  border-radius: 4px;
+  padding: 2px 4px;
+  transition: all 0.2s ease;
+}
+.tca-header-input:hover, .tca-header-input:focus {
+  border-color: #d1d5db !important;
+  background: #f9fafb !important;
+}
+
+/* Delete Column Styles */
+.tca-payment-table-th-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.tca-payment-table-th-wrapper:hover .tca-remove-col-btn {
+  opacity: 1;
+}
+.tca-remove-col-btn {
+  opacity: 0;
+  cursor: pointer;
+  color: #ef4444;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 0 6px;
+  margin-left: 2px;
+  line-height: 1;
+  transition: opacity 0.2s ease;
+}
+.tca-remove-col-btn:hover {
+  color: #b91c1c;
+}
